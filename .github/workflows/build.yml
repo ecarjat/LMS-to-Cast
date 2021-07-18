@@ -1,0 +1,37 @@
+name: build on freebsd 
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
+      with:
+        repository: nanopb/nanopb
+    - uses: actions/checkout@master
+      with:
+        repository: philippe44/mDNS-SD
+    - uses: actions/checkout@master
+      with:
+        repository: mozilla-b2g/valgrind
+    - uses: actions/checkout@master
+      with:
+        repository: chirlu/soxr.git
+    - uses: actions/checkout@master
+      with:
+        repository: pupnp/pupnp.git        
+        ref: release-1.14.7
+    - name: add ssl-dev
+      run: apt-get install  libssl-dev
+
+      
+      
+      
